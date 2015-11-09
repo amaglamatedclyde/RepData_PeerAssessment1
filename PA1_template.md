@@ -5,7 +5,11 @@ date: "November 5, 2015"
 output: html_document
 ---
 
-###Reading the Data
+<div style="text-align: center"><h1 >Reproducible Data: Peer Review Assignment 1</h1>
+<h4>Clyde Tressler </br>November 5, 2015</h4>
+</div>
+
+<h3>Reading the Data</h3>
 First we load the activity monitoring data from the csv file. We use strings as character vectors to facilitate conversion to POSIX dates. 
 
 
@@ -22,7 +26,7 @@ str(dat)
 ##  $ date    : Date, format: "2012-10-01" "2012-10-01" ...
 ##  $ interval: int  0 5 10 15 20 25 30 35 40 45 ...
 ```
-###Analysis of Raw Data
+<h3>Analysis of Raw Data</h3>
 Below we group interval observations by day, then plot a histogram of steps by day and report the mean and median number of steps per day. NA observations are removed when summing the interval data. The dplyr library is used to group and summarize the intervals by date.
 
 ```r
@@ -139,25 +143,7 @@ subset(interval_steps, steps==max(steps))
 ##   interval    steps
 ## 1      835 206.1698
 ```
-Calculating the time of day for max steps, assuming interval 0 corresponds to 00:00hrs. This may not be true, but I'm curious
 
-```r
-835/60 #calculate hours
-```
-
-```
-## [1] 13.91667
-```
-
-```r
-.91667*60 #calculate minutes from remainder
-```
-
-```
-## [1] 55.0002
-```
-
-Time of day calculated as 13:55. This is believable, but not proven.
 Next we calculate the number of NA observations in the dataset:
 
 ```r
@@ -167,7 +153,7 @@ sum(is.na(dat$steps))
 ```
 ## [1] 2304
 ```
-###Imputing Values for Missing Observations
+<h3>Imputing Values for Missing Observations</h3>
 Now we use vector recycling in R to quickly assign the step count means for each interval as a column in the original data frame, and then add another column to impute the missing values of the step observations by substituting the mean value when an NA is present in the original data.
 
 
@@ -214,7 +200,7 @@ tail(dat)
 ```
 
 ```r
-dat[14000:14015,] #looks right!
+dat[14000:14006,] #looks right!
 ```
 
 ```
@@ -226,15 +212,6 @@ dat[14000:14015,] #looks right!
 ## 14004     4 2012-11-18     1455  43.77358             4
 ## 14005     0 2012-11-18     1500  30.01887             0
 ## 14006     0 2012-11-18     1505  36.07547             0
-## 14007    36 2012-11-18     1510  35.49057            36
-## 14008     0 2012-11-18     1515  38.84906             0
-## 14009     0 2012-11-18     1520  45.96226             0
-## 14010     0 2012-11-18     1525  47.75472             0
-## 14011     0 2012-11-18     1530  48.13208             0
-## 14012   143 2012-11-18     1535  65.32075           143
-## 14013     0 2012-11-18     1540  82.90566             0
-## 14014   335 2012-11-18     1545  98.66038           335
-## 14015   681 2012-11-18     1550 102.11321           681
 ```
 
 Now we repeat the analyses using the imputed data:
@@ -298,7 +275,7 @@ est_median == median(imputed_steps$imputed_steps)
 ```
 No, the values are different. In this case, replacing the missing data has resulted in step counts that seem to be more normally distributed around the mean.
 
-###Weekday Activity vs Weekend Activity
+<h3>Weekday Activity vs Weekend Activity</h3>
 Now we examine whether activity patterns are different on weekends versus weekdays. We add a factor variable and a day of week column to visually verify the factor.
 
 ```r
@@ -320,4 +297,6 @@ xyplot(interval_steps$imputed_steps ~ interval_steps$interval | day, data=interv
 
 ![plot of chunk smoothed_plot](figure/smoothed_plot-1.png) 
 
+<h3>Interpretation</h3>
 The plots show that the weekday step count peaks earlier in the day, plateaus for some hours, and then has another increase later in the day. The weekend step counts build throughout the day and reach a higher maximum than the weekday counts. This seems to be consistent with a  traditional 40-hour work week schedule.
+
