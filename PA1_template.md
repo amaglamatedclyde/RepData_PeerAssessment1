@@ -125,7 +125,7 @@ plot(interval_steps$interval, interval_steps$steps, main = 'Number of Steps per 
 
 ![plot of chunk plot_time_series](figure/plot_time_series-1.png) 
 
-We verify the number of intervals observed and then identify the interval with the maximum number of steps:
+We verify that the number of intervals observed corresponds to 24 hours and then identify the interval with the maximum number of steps:
 
 ```r
 length(unique((dat$interval)))/12
