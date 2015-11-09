@@ -1,10 +1,10 @@
 ## Introduction
 
 This assignment makes use of data from a personal activity monitoring
-device. This device collects data at 5 minute intervals through out the
+device. This device collects data at 5 minute intervals throughout the
 day. The data consists of two months of data from an anonymous
 individual collected during the months of October and November, 2012
-and include the number of steps taken in 5 minute intervals each day.
+and includes the number of steps taken in 5 minute intervals each day.
 
 ## Data
 
@@ -26,5 +26,5 @@ The variables included in this dataset are:
 
 ## Assignment
 
-In this assignment the step count observation data was analyzed and plotted through several methods. 
-An output html file was then created by knitr. All analyses and procedures are documented in final html report file.
+In this assignment the step count observation data were analyzed and plotted using several methods. After   
+imputing values for missing data the analyses were repeated. An output html file was then created by knitr. All analyses and procedures are documented in the final html report file.
