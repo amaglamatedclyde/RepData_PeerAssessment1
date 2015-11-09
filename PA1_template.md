@@ -136,15 +136,9 @@ length(unique((dat$interval)))/12
 ```
 
 ```r
-subset(interval_steps, steps==max(steps))
+max_steps <- subset(interval_steps, steps==max(steps))
 ```
-
-```
-## Source: local data frame [1 x 2]
-## 
-##   interval    steps
-## 1      835 206.1698
-```
+Maximum number of steps is 206.17 during interval 835.  
 
 Next we calculate the number of NA observations in the dataset:
 
@@ -279,7 +273,7 @@ est_median == median(imputed_steps$imputed_steps)
 No, the values are different. In this case, replacing the missing data has resulted in step counts that seem to be more normally distributed around the mean.
 
 <h3>Weekday Activity vs Weekend Activity</h3>
-Now we examine whether activity patterns are different on weekends versus weekdays. We add a factor variable and a day of week column to visually verify the factor.
+Now we examine whether activity patterns are different on weekends versus weekdays. We add a column using a factor variable to distinguish weekdays from weekends and a 'day of week' column to visually verify the factor values. We provide panel plots of the interval data for weekends and weekdays:
 
 ```r
 weekends <- c('Saturday', 'Sunday')
@@ -295,7 +289,7 @@ xyplot(interval_steps$imputed_steps ~ interval_steps$interval | day, data=interv
 
 ![plot of chunk plot_day_of_week](figure/plot_day_of_week-1.png) 
 
-Now using a smoothing filter:
+Now we use a smoothing filter to better understand the important features of the plots:
 
 ```r
 xyplot(interval_steps$imputed_steps ~ interval_steps$interval | day, data=interval_steps,
@@ -306,5 +300,5 @@ xyplot(interval_steps$imputed_steps ~ interval_steps$interval | day, data=interv
 ![plot of chunk smoothed_plot](figure/smoothed_plot-1.png) 
 
 <h3>Interpretation</h3>
-The plots show that the weekday step counts peak eary in the day, plateau for some hours, and then increase later in the day. The weekend step counts build quickly and do not plateau. This seems consistent with a traditional 40-hour work week schedule.
+The plots show that the weekday step counts peak early in the day, plateau for some hours, and then increase later in the day. The weekend step counts build quickly and do not plateau. This seems consistent with a traditional 40-hour work week schedule.
 
