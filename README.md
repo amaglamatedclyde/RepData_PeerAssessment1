@@ -27,4 +27,4 @@ The variables included in this dataset are:
 ## Assignment
 
 In this assignment the step count observation data was analyzed and plotted through several methods. 
-An output html file was then created by knitr. All analyses and procedures are documented in final html report file.
+An output html file was then created by knitr. All analyses and procedures are documented in the final html report file.
