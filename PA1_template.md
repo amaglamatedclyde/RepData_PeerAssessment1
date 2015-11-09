@@ -53,7 +53,8 @@ head(steps)
 ```
 
 ```r
-hist(steps$steps, main = 'Histogram of Steps per Day', xlab = 'Number of Steps', ylim=c(0,20), col='steelblue', breaks=10)
+hist(steps$steps, main = 'Histogram of Steps per Day', xlab = 'Number of Steps', ylim=c(0,20),
+     col='steelblue', breaks=10)
 ```
 
 ![plot of chunk plot_histogram_1](figure/plot_histogram_1-1.png) 
@@ -118,7 +119,8 @@ tail(interval_steps)
 ```
 
 ```r
-plot(interval_steps$interval, interval_steps$steps, main = 'Number of Steps per 5-minute Interval', xlab = 'Interval', col='steelblue', type = 'l', ylab = 'Number of Steps', xlim=c(0,2500))
+plot(interval_steps$interval, interval_steps$steps, main = 'Number of Steps per 5-minute Interval',
+     xlab = 'Interval', col='steelblue', type = 'l', ylab = 'Number of Steps', xlim=c(0,2500))
 ```
 
 ![plot of chunk plot_time_series](figure/plot_time_series-1.png) 
@@ -235,7 +237,8 @@ head(imputed_steps)
 ```
 
 ```r
-hist(imputed_steps$imputed_steps, main = 'Histogram of Steps per Day', xlab = 'Number of Steps', ylim=c(0,25), col='steelblue', breaks=10)
+hist(imputed_steps$imputed_steps, main = 'Histogram of Steps per Day',
+     xlab = 'Number of Steps', ylim=c(0,25), col='steelblue', breaks=10)
 ```
 
 ![plot of chunk plot_histogram_2](figure/plot_histogram_2-1.png) 
@@ -285,7 +288,9 @@ dat$day <- factor((weekdays(dat$date) %in% weekends), levels=c(TRUE, FALSE), lab
 interval_grouped <- group_by(dat, interval, day)
 interval_steps <- summarise_each(interval_grouped, funs(mean(.)), imputed_steps)
 library(lattice)
-xyplot(interval_steps$imputed_steps ~ interval_steps$interval | day, data=interval_steps, layout=c(1,2), main="Mean Steps for 5-Minute Intervals for Weekdays vs Weekends", xlab="Interval", ylab="Number of Steps", type=c("l","l"))
+xyplot(interval_steps$imputed_steps ~ interval_steps$interval | day, data=interval_steps,
+       layout=c(1,2), main="Mean Steps for 5-Minute Intervals for Weekdays vs Weekends",
+       xlab="Interval", ylab="Number of Steps", type=c("l","l"))
 ```
 
 ![plot of chunk plot_day_of_week](figure/plot_day_of_week-1.png) 
@@ -293,7 +298,9 @@ xyplot(interval_steps$imputed_steps ~ interval_steps$interval | day, data=interv
 Now using a smoothing filter:
 
 ```r
-xyplot(interval_steps$imputed_steps ~ interval_steps$interval | day, data=interval_steps, layout=c(1,2), main="Mean Steps with Smoothed Intervals", xlab="Interval", ylab="Number of Steps", type=c("smooth","smooth"), span=.25)
+xyplot(interval_steps$imputed_steps ~ interval_steps$interval | day, data=interval_steps,
+       layout=c(1,2), main="Mean Steps with Smoothed Intervals", xlab="Interval",
+       ylab="Number of Steps", type=c("smooth","smooth"), span=.25)
 ```
 
 ![plot of chunk smoothed_plot](figure/smoothed_plot-1.png) 
