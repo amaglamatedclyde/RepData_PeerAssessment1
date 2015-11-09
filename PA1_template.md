@@ -300,11 +300,11 @@ Now using a smoothing filter:
 ```r
 xyplot(interval_steps$imputed_steps ~ interval_steps$interval | day, data=interval_steps,
        layout=c(1,2), main="Mean Steps with Smoothed Intervals", xlab="Interval",
-       ylab="Number of Steps", type=c("smooth","smooth"), span=.25)
+       ylab="Number of Steps", type=c("smooth","smooth"), span=.25, ylim = c(0,100))
 ```
 
 ![plot of chunk smoothed_plot](figure/smoothed_plot-1.png) 
 
 <h3>Interpretation</h3>
-The plots show that the weekday step count peaks earlier in the day, plateaus for some hours, and then has another increase later in the day. The weekend step counts build throughout the day and reach a higher maximum than the weekday counts. This seems to be consistent with a  traditional 40-hour work week schedule.
+The plots show that the weekday step counts peak eary in the day, plateau for some hours, and then increase later in the day. The weekend step counts build quickly and do not plateau. This seems consistent with a traditional 40-hour work week schedule.
 
