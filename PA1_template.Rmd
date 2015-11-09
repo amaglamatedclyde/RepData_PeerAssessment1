@@ -9,7 +9,7 @@ output: html_document
 ###Reading the Data
 First we load the activity data. We use strings as character vectors to facilitate conversion to dates. 
 
-```{r}
+```{r load_data}
 setwd('~/RepData_PeerAssessment1')
 dat <- read.csv('activity.csv', stringsAsFactors = FALSE)
 dat$date <- as.Date(dat$date)
@@ -21,7 +21,7 @@ Below we group interval observations by day, then plot a histogram of steps by d
 library(dplyr)
 ```
 
-```{r}
+```{r plot_histogram_1}
 date_grouped <- group_by(dat, date)
 steps <- summarise_each(date_grouped, funs(sum(., na.rm = TRUE)), steps)
 head(steps)
@@ -30,14 +30,14 @@ est_mean <- mean(steps$steps)
 est_median <- median(steps$steps)
 ```
 
-```{r}
+```{r report_mean_median}
 est_mean
 est_median
 ```
 
 Next we group the data by 5-minute interval values in order to visualize the average steps per interval over all days in the observations. 
 
-```{r}
+```{r plot_time_series}
 interval_grouped <- group_by(dat, interval)
 interval_steps <- summarise_each(interval_grouped, funs(mean(., na.rm = TRUE)), steps)
 head(interval_steps)
@@ -46,18 +46,18 @@ plot(interval_steps$interval, interval_steps$steps, main = 'Number of Steps per 
 ```
 
 We verify the number of intervals observed and then identify the interval with the maximum number of steps:
-```{r}
+```{r calc_max}
 length(unique((dat$interval)))/12
 subset(interval_steps, steps==max(steps))
 ```
-Calculating the time of day for max steps:
-```{r}
+Calculating the time of day for max steps, assuming interval 0 corresponds to 00:00hrs. This may not be true, but I'm curious
+```{r calc_time}
 
 835/60 #calculate hours
 .91667*60 #calculate minutes from remainder
 ```
 
-Time of day is 13:55.
+Time of day caluclated as 13:55. This is believable, but not proven.
 Next we calculate the number of NA observations in the dataset:
 ```{r}
 sum(is.na(dat$steps))
@@ -65,20 +65,20 @@ sum(is.na(dat$steps))
 ###Imputing Values for Missing Observations
 Now we use vector recycling in R to quickly assign the step count means for each interval as a column in the original data frame, and then add another column to impute the missing values of the step observations by substituting the mean value when an NA is present in the original data.
 
-```{r}
+```{r imputing_nas}
 unique(dat$interval == interval_steps$interval) #check to see the intervals all match
 dat$int_means <- interval_steps$steps
 dat$imputed_steps <- ifelse(is.na(dat$steps), dat$int_means, dat$steps)
 ```
 Let's make sure it worked:
-```{r}
+```{r check_chunk}
 head(dat)
 tail(dat)
 dat[14000:14015,] #looks right!
 ```
 
 Now we repeat the analyses using the imputed data:
-```{r}
+```{r plot_histogram_2}
 date_grouped <- group_by(dat, date)
 imputed_steps <- summarise_each(date_grouped, funs(sum(.)), imputed_steps)
 head(imputed_steps)
@@ -88,7 +88,7 @@ median(imputed_steps$imputed_steps)
 ```
 
 Are the values for the mean and median with the missing values filled-in the same as the previous calculations?
-```{r}
+```{r examine_changes}
 est_mean == mean(imputed_steps$imputed_steps)
 est_median == median(imputed_steps$imputed_steps)
 ```
@@ -96,7 +96,7 @@ No, the values are different. In this case, replacing the missing data has resul
 
 ###Weekday Activity vs Weekend Activity
 Now we examine whether activity patterns are different on weekends versus weekdays. We add a factor variable and a day of week column to visually verify the factor.
-```{r}
+```{r plot_day_of_week}
 weekends <- c('Saturday', 'Sunday')
 dat$dow <- weekdays(dat$date)
 dat$day <- factor((weekdays(dat$date) %in% weekends), levels=c(TRUE, FALSE), labels=c('weekend', 'weekday'))

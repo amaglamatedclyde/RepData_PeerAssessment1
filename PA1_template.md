@@ -52,7 +52,7 @@ head(steps)
 hist(steps$steps, main = 'Histogram of Steps per Day', xlab = 'Number of Steps', ylim=c(0,20), col='steelblue', breaks=10)
 ```
 
-![plot of chunk unnamed-chunk-3](figure/unnamed-chunk-3-1.png) 
+![plot of chunk plot_histogram_1](figure/plot_histogram_1-1.png) 
 
 ```r
 est_mean <- mean(steps$steps)
@@ -117,7 +117,7 @@ tail(interval_steps)
 plot(interval_steps$interval, interval_steps$steps, main = 'Number of Steps per 5-minute Interval', xlab = 'Interval', col='steelblue', type = 'l', ylab = 'Number of Steps', xlim=c(0,2500))
 ```
 
-![plot of chunk unnamed-chunk-5](figure/unnamed-chunk-5-1.png) 
+![plot of chunk plot_time_series](figure/plot_time_series-1.png) 
 
 We verify the number of intervals observed and then identify the interval with the maximum number of steps:
 
@@ -139,7 +139,7 @@ subset(interval_steps, steps==max(steps))
 ##   interval    steps
 ## 1      835 206.1698
 ```
-Calculating the time of day for max steps:
+Calculating the time of day for max steps, assuming interval 0 corresponds to 00:00hrs. This may not be true, but I'm curious
 
 ```r
 835/60 #calculate hours
@@ -157,7 +157,7 @@ Calculating the time of day for max steps:
 ## [1] 55.0002
 ```
 
-Time of day is 13:55.
+Time of day caluclated as 13:55. This is believable, but not proven.
 Next we calculate the number of NA observations in the dataset:
 
 ```r
@@ -261,7 +261,7 @@ head(imputed_steps)
 hist(imputed_steps$imputed_steps, main = 'Histogram of Steps per Day', xlab = 'Number of Steps', ylim=c(0,25), col='steelblue', breaks=10)
 ```
 
-![plot of chunk unnamed-chunk-11](figure/unnamed-chunk-11-1.png) 
+![plot of chunk plot_histogram_2](figure/plot_histogram_2-1.png) 
 
 ```r
 mean(imputed_steps$imputed_steps)
@@ -311,6 +311,6 @@ library(lattice)
 xyplot(interval_steps$imputed_steps ~ interval_steps$interval | day, data=interval_steps, layout=c(1,2), main="Mean Steps for 5-Minute Intervals for Weekdays vs Weekends", xlab="Interval", ylab="Number of Steps", type=c("l","l"))
 ```
 
-![plot of chunk unnamed-chunk-13](figure/unnamed-chunk-13-1.png) 
+![plot of chunk plot_day_of_week](figure/plot_day_of_week-1.png) 
 
 The Plots show that the weekday step count is highest earlier in the day and the weekend step count is more evenly distributed throughout the day.
