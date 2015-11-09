@@ -289,6 +289,7 @@ xyplot(interval_steps$imputed_steps ~ interval_steps$interval | day, data=interv
 ```
 
 ![plot of chunk plot_day_of_week](figure/plot_day_of_week-1.png) 
+
 Now using a smoothing filter:
 
 ```r

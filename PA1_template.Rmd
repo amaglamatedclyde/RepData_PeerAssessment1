@@ -102,6 +102,7 @@ interval_steps <- summarise_each(interval_grouped, funs(mean(.)), imputed_steps)
 library(lattice)
 xyplot(interval_steps$imputed_steps ~ interval_steps$interval | day, data=interval_steps, layout=c(1,2), main="Mean Steps for 5-Minute Intervals for Weekdays vs Weekends", xlab="Interval", ylab="Number of Steps", type=c("l","l"))
 ```
+
 Now using a smoothing filter:
 ```{r smoothed_plot, fig.width=4}
 xyplot(interval_steps$imputed_steps ~ interval_steps$interval | day, data=interval_steps, layout=c(1,2), main="Mean Steps with Smoothed Intervals", xlab="Interval", ylab="Number of Steps", type=c("smooth","smooth"), span=.25)
