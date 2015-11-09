@@ -7,7 +7,7 @@ output: html_document
 ```{r global_options, echo=TRUE}
 ```
 ###Reading the Data
-First we load the activity data. We use strings as character vectors to facilitate conversion to dates. 
+First we load the activity monitoring data from the csv file. We use strings as character vectors to facilitate conversion to POSIX dates. 
 
 ```{r load_data}
 setwd('~/RepData_PeerAssessment1')
@@ -57,7 +57,7 @@ Calculating the time of day for max steps, assuming interval 0 corresponds to 00
 .91667*60 #calculate minutes from remainder
 ```
 
-Time of day caluclated as 13:55. This is believable, but not proven.
+Time of day calculated as 13:55. This is believable, but not proven.
 Next we calculate the number of NA observations in the dataset:
 ```{r}
 sum(is.na(dat$steps))
@@ -105,5 +105,9 @@ interval_steps <- summarise_each(interval_grouped, funs(mean(.)), imputed_steps)
 library(lattice)
 xyplot(interval_steps$imputed_steps ~ interval_steps$interval | day, data=interval_steps, layout=c(1,2), main="Mean Steps for 5-Minute Intervals for Weekdays vs Weekends", xlab="Interval", ylab="Number of Steps", type=c("l","l"))
 ```
+Now using a smoothing filter:
+```{r smoothed_plot, fig.width=4}
+xyplot(interval_steps$imputed_steps ~ interval_steps$interval | day, data=interval_steps, layout=c(1,2), main="Mean Steps with Smoothed Intervals", xlab="Interval", ylab="Number of Steps", type=c("smooth","smooth"), span=.25)
+```
 
-The Plots show that the weekday step count is highest earlier in the day and the weekend step count is more evenly distributed throughout the day.
+The plots show that the weekday step count peaks earlier in the day, plateaus for some hours, and then has another increase later in the day. The weekend step counts build throughout the day and reach a higher maximum than the weekday counts. This seems to be consistent with a  traditional 40-hour work week schedule.
