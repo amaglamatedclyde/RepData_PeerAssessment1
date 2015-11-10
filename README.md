@@ -7,7 +7,7 @@ individual collected during the months of October and November, 2012.
 
 ## Data
 
-The data for this assignment was downloaded from the course web site:
+The dataset for this assignment was downloaded from the course web site:
 
 * Dataset: [Activity monitoring data](https://d396qusza40orc.cloudfront.net/repdata%2Fdata%2Factivity.zip) [52K]
 
