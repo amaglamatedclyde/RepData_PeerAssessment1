@@ -9,6 +9,8 @@ output: html_document
 <div style="text-align: center"><h1 >Reproducible Data: Peer Review Assignment 1</h1>
 <h4>Clyde Tressler </br>November 5, 2015</h4>
 </div>
+<h3> Introduction</h3>
+In this report we will demonstrate the principles of reproducible analyses by providing an integrated document that combines source code and code output.  
 
 <h3>Reading the Data</h3>
 First we load the activity monitoring data from the csv file. We use strings as character vectors to facilitate conversion to POSIX dates. 
