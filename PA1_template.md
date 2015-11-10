@@ -12,7 +12,7 @@ output: html_document
 In this report we will demonstrate the principles of reproducible analyses by providing an integrated document that combines source code and code output. We use 2 months of observations from a personal activity monitoring device.
 
 <h3>Reading the Data</h3>
-First we load the activity monitoring data from the csv file. We use strings as character vectors to facilitate conversion to POSIX dates. 
+First we load the activity monitoring data from the csv file. We use strings as character vectors to facilitate conversion of the date column to POSIX dates. 
 
 
 ```r

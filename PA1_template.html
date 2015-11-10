@@ -211,7 +211,7 @@ hr {
 
 <h3>Reading the Data</h3>
 
-<p>First we load the activity monitoring data from the csv file. We use strings as character vectors to facilitate conversion to POSIX dates. </p>
+<p>First we load the activity monitoring data from the csv file. We use strings as character vectors to facilitate conversion of the date column to POSIX dates. </p>
 
 <pre><code class="r">setwd(&#39;~/RepData_PeerAssessment1&#39;)
 dat &lt;- read.csv(&#39;activity.csv&#39;, stringsAsFactors = FALSE)
