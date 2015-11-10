@@ -58,14 +58,13 @@ We verify that the number of intervals observed corresponds to 24 hours and then
 length(unique((dat$interval)))/12
 max_steps <- subset(interval_steps, steps==max(steps))
 ```
-Maximum number of steps is `r round(max_steps[1,2], 2)` during interval `r max_steps[1,1]`.  
-
+Maximum number of steps is `r round(max_steps[1,2], 2)` recorded during interval `r max_steps[1,1]`.  
+<h3>Imputing Values for Missing Observations</h3>
 Next we calculate the number of NA observations in the dataset:
 ```{r}
 sum(is.na(dat$steps))
 ```
-<h3>Imputing Values for Missing Observations</h3>
-Now we use vector recycling in R to quickly assign the step count means for each interval as a column in the original data frame, and then add another column to impute the missing values of the step observations by substituting the mean value when an NA is present in the original data.
+We can use vector recycling in R to quickly assign the step count means for each interval as a column in the original data frame, and then add another column to impute the missing values of the step observations by substituting the mean value when an NA is present in the original data.
 
 ```{r imputing_nas}
 unique(dat$interval == interval_steps$interval) #check to see the intervals all match

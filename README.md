@@ -25,6 +25,9 @@ The variables included in this dataset are:
 
 ## Assignment
 
-In this assignment the step count observation data were analyzed and plotted using several methods.  
-After imputing values for missing data, the analyses were repeated. An output html file was then created by knitr. 
-All analyses and procedures are documented in the final html report file.
+In this assignment the step count observation data are analyzed and plotted using several methods.  
+After imputing values for missing data, the analyses are repeated. An output html file is then created by knitr. 
+All analyses and procedures are documented in the final html report file.  
+
+The overarching purpose is to demonstrate the integration of raw data, data processing, source code, analytic data,  
+data analysis and reporting into a single unified file.

@@ -140,8 +140,8 @@ length(unique((dat$interval)))/12
 ```r
 max_steps <- subset(interval_steps, steps==max(steps))
 ```
-Maximum number of steps is 206.17 during interval 835.  
-
+Maximum number of steps is 206.17 recorded during interval 835.  
+<h3>Imputing Values for Missing Observations</h3>
 Next we calculate the number of NA observations in the dataset:
 
 ```r
@@ -151,8 +151,7 @@ sum(is.na(dat$steps))
 ```
 ## [1] 2304
 ```
-<h3>Imputing Values for Missing Observations</h3>
-Now we use vector recycling in R to quickly assign the step count means for each interval as a column in the original data frame, and then add another column to impute the missing values of the step observations by substituting the mean value when an NA is present in the original data.
+We can use vector recycling in R to quickly assign the step count means for each interval as a column in the original data frame, and then add another column to impute the missing values of the step observations by substituting the mean value when an NA is present in the original data.
 
 
 ```r
